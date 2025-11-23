@@ -3,8 +3,8 @@ from datetime import datetime
 
 class Vehicle(ABC):
 
-    def __init__(self, id: str, brand: str, model:str, daily_rate: float):
-        self._vehicle_id = id
+    def __init__(self, vehicle_id: str, brand: str, model:str, daily_rate: float):
+        self._vehicle_id = vehicle_id
         self._brand = brand
         self._model = model
         self._daily_rate = daily_rate
