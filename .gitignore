@@ -1,0 +1,67 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Environments
+.env/
+venv/
+env/
+# virtualenv
+.venv/
+bin/
+include/
+lib/
+lib64/
+local/
+
+# Editors/IDE
+.DS_Store # macOS
+.idea/ # IntelliJ IDEA / PyCharm
+.vscode/ # VS Code
+*.sublime-project # Sublime Text
+*.sublime-workspace # Sublime Text
+*.swp # Vim swap files
+*~ # Emacs backup files
+
+# Python specific
+.mypy_cache/
+.pytest_cache/
+htmlcov/
+.coverage
+.tox/
+.pdm-build/
+.pdm-python
+.python-version # pyenv
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs and temporary files
+*.log
+tmp/
