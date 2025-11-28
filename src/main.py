@@ -14,6 +14,8 @@ from src.models.car import Car
 from src.models.client import Client
 from src.repositories.repository import Repository
 from src.services.rental_service import RentalService
+
+from src.repositories.car_repository import CarRepository
 import logging
 
 logging.basicConfig(
@@ -49,12 +51,26 @@ def main():
     logger.info("Starting Car Rental Management System...")
 
     # Initialize repositories
-    cars_repo = Repository("data/cars.json")
+    cars_repo = CarRepository("data/cars.json")
     clients_repo = Repository("data/clients.json")
     rentals_repo = Repository("data/rentals.json")
 
     # Initialize service layer
     service = RentalService(cars_repo, clients_repo, rentals_repo)
+
+
+    #### to tet (temporary)
+    new_car = Car("C004", "Mazda", "CX-5", 80.0, "SUV", 5)
+    service.add_car(new_car)
+
+    cars_repo.update("C004", {
+        "daily_rate": 90,
+        "seats": 6
+    })
+
+    cars_repo.delete("C004")  
+    logger.info(f"Deleted cars history: {cars_repo.get_deleted_history()}")
+    ####
 
     # Seed initial data only once
     seed_data(service, cars_repo, clients_repo, rentals_repo)

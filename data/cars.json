@@ -70,5 +70,23 @@
     "car_type": "Sedan",
     "seats": 5,
     "is_available": true
+  },
+  {
+    "vehicle_id": "C004",
+    "brand": "Mazda",
+    "model": "CX-5",
+    "daily_rate": 80.0,
+    "car_type": "SUV",
+    "seats": 5,
+    "is_available": true
+  },
+  {
+    "vehicle_id": "C004",
+    "brand": "Mazda",
+    "model": "CX-5",
+    "daily_rate": 80.0,
+    "car_type": "SUV",
+    "seats": 5,
+    "is_available": true
   }
 ]

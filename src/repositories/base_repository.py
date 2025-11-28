@@ -6,7 +6,7 @@ from typing import List, Optional
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-class Repositort(ABC):
+class Repository(ABC):
     """
     Abstract base class representing a generic repository.
 
