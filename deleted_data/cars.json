@@ -1,11 +1,11 @@
 [
   {
-    "vehicle_id": "C001",
-    "brand": "Tesla",
-    "model": "Model3",
-    "daily_rate": 90.0,
-    "car_type": "sedan",
-    "seats": 5,
+    "vehicle_id": "53264057-dba2-4fc6-85ed-2897313cec56",
+    "brand": "isi",
+    "model": "dgssge",
+    "daily_rate": 325.0,
+    "car_type": "tuyur",
+    "seats": 647,
     "is_available": true,
     "deletion_date": "2025-11-29"
   }

@@ -4,6 +4,7 @@ from src.models.car import Car
 from src.models.client import Client
 from src.models.rental import Rental
 from src.repositories.base_repository import Repository
+import uuid
 import logging
 
 logger = logging.getLogger(__name__)
@@ -16,9 +17,16 @@ class RentalService:
         self.cars_repo = cars_repo
         self.clients_repo = clients_repo
         self.rentals_repo = rentals_repo
+    
+    @staticmethod
+    def _generate_id() -> str:
+        return str(uuid.uuid4())
 
     def add_car(self, car: Car) -> bool:
         """Add a new car to the system"""
+        # Set the id dynamically
+        car_id = self._generate_id()
+        car = Car(car_id, car.brand, car.model, car.daily_rate, car.car_type, car.seats)
         car_dict = car.to_dict()
         return self.cars_repo.create(car_dict)
 
@@ -55,6 +63,9 @@ class RentalService:
 
     def add_client(self, client: Client) -> bool:
         """Add a new client to the system"""
+        # Set the id dynamically
+        client_id = self._generate_id()
+        client = Client(client_id, client.name, client.email, client.phone)
         client_dict = client.to_dict()
         return self.clients_repo.create(client_dict)
 
@@ -65,7 +76,7 @@ class RentalService:
             return Client.from_dict(client_dict)
         return None
 
-    def create_rental(self, rental_id: str, car_id: str, client_id: str,
+    def create_rental(self, car_id: str, client_id: str,
                      start_date: Optional[datetime] = None) -> Optional[Rental]:
         """Create a new rental"""
         car = self.get_car(car_id)
@@ -85,6 +96,9 @@ class RentalService:
         if start_date is None:
             start_date = datetime.now()
 
+        # Set the id dynamically
+        rental_id = self._generate_id()
+
         rental = Rental(rental_id, car, client, start_date)
         car.is_available = False
 
@@ -97,6 +111,8 @@ class RentalService:
 
         # Save rental
         rental_dict = rental.to_dict()
+
+
         if self.rentals_repo.create(rental_dict):
             return rental
         return None

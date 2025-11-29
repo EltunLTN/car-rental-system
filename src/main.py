@@ -32,20 +32,20 @@ def seed_data(service: RentalService, cars_repo, clients_repo, rentals_repo):
     # ---------------- CARS -------------------
     if not cars_repo.read_all():
         logger.info("Seeding sample cars...")
-        service.add_car(Car("C001", "Toyota", "Camry", 50.0, "Sedan", 5))
-        service.add_car(Car("C002", "Honda", "CR-V", 70.0, "SUV", 7))
-        service.add_car(Car("C003", "BMW", "320i", 100.0, "Sedan", 5))
+        service.add_car(Car("Toyota", "Camry", 50.0, "Sedan", 5))
+        service.add_car(Car("Honda", "CR-V", 70.0, "SUV", 7))
+        service.add_car(Car("BMW", "320i", 100.0, "Sedan", 5))
 
     # ---------------- CLIENTS ----------------
     if not clients_repo.read_all():
         logger.info("Seeding sample clients...")
-        service.add_client(Client("CL001", "John Doe", "john@example.com", "+1234567890"))
-        service.add_client(Client("CL002", "Jane Smith", "jane@example.com", "+0987654321"))
+        service.add_client(Client("John Doe", "john@example.com", "+1234567890"))
+        service.add_client(Client("Jane Smith", "jane@example.com", "+0987654321"))
 
     # ---------------- RENTALS ----------------
     if not rentals_repo.read_all():
         logger.info("Creating initial rental...")
-        service.create_rental("R001", "C001", "CL001")  # Rents car C001
+        service.create_rental("C001", "CL001")  # Rents car C001
 
 
 def main():
