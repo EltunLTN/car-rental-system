@@ -1,15 +1,27 @@
-from .base import Vehicle
+from src.models.base import Vehicle
+from src.models.strategies.rental_cost_interface import RentalCostStrategy
+from src.models.strategies.cost_strategy import SUVRentalCost, StandardCarCost, LongTermRentalCost, HolidayDiscount
 
 class Car(Vehicle):
     """Represents a car in the rental system. SUVs have a higher rental cost."""
-
-    SUV_COST_COEFFICIENT = 1.2
 
     def __init__(self, vehicle_id: str, brand: str, model: str,
                  daily_rate: float, car_type: str, seats: int):
         super().__init__(vehicle_id, brand, model, daily_rate)
         self._car_type = car_type
         self._seats = seats
+
+        # choose a base strategy based on car type
+        if car_type.lower() == "suv":
+            self._rental_cost_strategy: RentalCostStrategy = SUVRentalCost()
+        else:
+            self._rental_cost_strategy: RentalCostStrategy = StandardCarCost()
+
+        # apply long term strategy
+        self._rental_cost_strategy = LongTermRentalCost(self._rental_cost_strategy)
+
+        # apply holiday strategy 
+        self._rental_cost_strategy = HolidayDiscount(self._rental_cost_strategy)
 
         # validate on initialization
         self.validate()
@@ -20,11 +32,7 @@ class Car(Vehicle):
 
     def calculate_rental_cost(self, days: int) -> float:
         """Calculate rental cost; applies SUV multiplier if applicable."""
-        base_cost = self._daily_rate * days
-        if self._car_type.lower() == "suv":
-            return base_cost * self.SUV_COST_COEFFICIENT
-        return base_cost
-    
+        return self._rental_cost_strategy.calculate_cost(self, days)
     def validate(self):
         """Public validation callable by service layer"""
         if not isinstance(self._car_type, str) or not self._car_type.strip():
@@ -32,7 +40,7 @@ class Car(Vehicle):
         if not isinstance(self._seats, int) or self._seats <= 0:
             raise ValueError("Number of seats must be a positive integer")
         
-        super()._validate()
+        super().validate()
 
     @property
     def car_type(self):

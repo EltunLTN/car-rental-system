@@ -28,16 +28,11 @@ class Vehicle(ABC):
         self._model = model
         self._daily_rate = daily_rate
         self._is_available = True
-
-        # immediate validation
-        self._validate()
     
     def __str__(self):
         return f"Vehicle[{self._vehicle_id}] {self._brand} {self._model} - ${self._daily_rate}/day | Available: {self._is_available}"
 
-    
-    # keep the base validate abstract (expose the inherited validation instead)
-    def _validate(self):
+    def validate(self):
         """Internal validation for vehicle attributes."""
         if not self._vehicle_id or not isinstance(self._vehicle_id, str):
             raise ValueError("Vehicle ID must be a non-empty string")
