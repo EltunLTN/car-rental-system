@@ -29,9 +29,9 @@ function CustomCard({
   return (
     <Card className={className}>
       <CardHeader>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center gap-2">
           <CardTitle>{headerText}</CardTitle>
-          <CustomIcon Icon={Icon} colorTheme={iconColor} />
+          <CustomIcon Icon={Icon} colorTheme={iconColor} className="sm:p-3" />
         </div>
       </CardHeader>
       <CardContent>

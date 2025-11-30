@@ -3,7 +3,7 @@ import RecentRentals from "@/components/DashBoard/Cards/RecentRentals";
 
 function DashBoard() {
   return (
-    <div className="min-h-screen px-5 py-2">
+    <div className="min-h-screen px-5 py-2 max-w-md md:max-w-none mx-auto">
       <h1 className="font-open text-fluid-2xl text-center md:text-start pt-4 mb-5">
         Dashboard overview
       </h1>
