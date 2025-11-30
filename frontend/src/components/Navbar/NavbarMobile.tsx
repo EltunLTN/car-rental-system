@@ -9,7 +9,7 @@ function NavbarMobile() {
         className={cn(
           " fixed bottom-0 z-1 left-0 right-0 pt-4",
           "flex items-center justify-around",
-          "max-w-md mx-auto px-8"
+          "max-w-md mx-auto px-8 bg-background rounded-t-3xl"
         )}
       >
         {routes.map((route) => {

@@ -5,8 +5,8 @@ function Footer() {
     <footer
       className={cn(
         "text-fluid-xs relative bottom-0 bg-sidebar",
-        "hidden border-t-2",
-        "md:flex md:justify-center nd:items-center md:py-7"
+        "hidden border-t",
+        "md:flex md:justify-center nd:items-center md:py-3"
       )}
     >
       © 2025 Car Rental Manager. All rights reserved.
