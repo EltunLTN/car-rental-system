@@ -1,73 +1,80 @@
-# React + TypeScript + Vite
+A frontend application built with React, TypeScript, Vite, TailwindCSS, shadcn/ui, React Router, React Query, and Axios.
+This project is currently in early development and serves as the UI for a rental management system.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+📌 Features (In Progress)
 
-Currently, two official plugins are available:
+Dashboard page – structure implemented, fastAPI connection ensure to /dashboard endpoint
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Clients page – placeholder page added
 
-## React Compiler
+Cars page – placeholder page added
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Rentals page – placeholder page added
 
-## Expanding the ESLint configuration
+Full functionality will be added as development continues.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🛠️ Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Vite – build tool
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+React 18 – UI library
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+TypeScript – type safety
+
+TailwindCSS – styling
+
+shadcn/ui – component system
+
+React Router v6 – client-side routing
+
+React Query – server state management
+
+Axios – HTTP client
+
+🚀 Getting Started
+1. Clone the repository
+git clone [<repo-url>](https://github.com/M4sayev/car-rental-system.git)
+cd car-rental-system
+
+2. Run the server
+python run_api.py
+
+3. Change folder
+cd frontend 
+
+4. Install dependencies
+npm install
+
+( 
+    If you encounter an error related to shadcn/ui:
+    - Make sure the project is initialized:
+        npx shadcn@latest init
+    - If you already have a components.json file that is corrupted or misconfigured,
+      delete it and run the initialization again.
+)
+
+5. Start development server
+npm run dev
+
+📁 Project Structure
 ```
+src/
+ ├─ components/       # Shared UI components
+ ├─ pages/
+ │   ├─ dashboard/
+ │   ├─ clients/
+ │   ├─ cars/
+ │   └─ rentals/
+ ├─ constants         
+ ├─ utils     
+ ├─ config.js
+ ├─ index.css
+ ├─ App.tsx
+ └─ main.tsx
+ ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+📌 Current Status
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🚧 Work in Progress
+UI structure is set up, routing works, and pages are scaffolded, dashboard page is fully connected to the api.
+Functionality, full API integration, and full UI design are coming next.
