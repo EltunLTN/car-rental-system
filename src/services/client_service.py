@@ -50,3 +50,10 @@ class ClientService:
         """Get a list of deleted clients"""
         deleted_clients = self.clients_repo.get_deleted_history()
         return deleted_clients
+    
+    def update_client(self, client_id: str, updated_fields: dict) -> Client | bool:
+        """Update client by ID"""
+        client = self.clients_repo.update(client_id, updated_fields)
+        if not client:
+            return False
+        return Client.from_dict(client)
