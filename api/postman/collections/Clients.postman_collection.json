@@ -12,8 +12,12 @@
         "method": "GET",
         "url": {
           "raw": "{{base_url}}/clients",
-          "host": ["{{base_url}}"],
-          "path": ["clients"]
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "clients"
+          ]
         }
       }
     },
@@ -27,8 +31,13 @@
         "method": "GET",
         "url": {
           "raw": "{{base_url}}/clients/CL001",
-          "host": ["{{base_url}}"],
-          "path": ["clients", "CL001"]
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "clients",
+            "CL001"
+          ]
         }
       }
     },
@@ -51,8 +60,12 @@
         },
         "url": {
           "raw": "{{base_url}}/clients",
-          "host": ["{{base_url}}"],
-          "path": ["clients"]
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "clients"
+          ]
         }
       }
     },
@@ -66,8 +79,39 @@
         "method": "DELETE",
         "url": {
           "raw": "{{base_url}}/clients/83a61929-37b4-4406-8ae5-041d3748b83c",
-          "host": ["{{base_url}}"],
-          "path": ["clients", "83a61929-37b4-4406-8ae5-041d3748b83c"]
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "clients",
+            "83a61929-37b4-4406-8ae5-041d3748b83c"
+          ]
+        }
+      }
+    },
+    {
+      "name": "update_client",
+      "id": "c5f24db2-b68c-4da8-898f-a5e78cc37887",
+      "request": {
+        "method": "PATCH",
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"meow\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/clients/CL001",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "clients",
+            "CL001"
+          ]
         }
       }
     }
