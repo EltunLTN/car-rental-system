@@ -1,5 +1,11 @@
 # Car Rental Management System – Technical Documentation
 
+## Overview
+
+This document describes the Car Rental Management System, covering both Sprint 1 (OOP Implementation) and Sprint 2 (Refinement, Completion, and Polish) deliverables.
+
+---
+
 ## Sprint 1 – OOP Implementation
 
 ### Project Structure
@@ -115,3 +121,223 @@ car_rental_project/
 - Python `logging` module is used
 - Logs are recorded at the INFO level
 - Tracks repository operations and important events
+
+---
+
+## Sprint 2 – Refinement, Completion, and Polish
+
+### Enhanced Architecture
+
+The system has been enhanced with a complete layered architecture:
+
+```
+┌─────────────────────────────────────┐
+│      CLI Interface (cli.py)         │  ← User Interaction Layer
+├─────────────────────────────────────┤
+│      Service Layer                   │  ← Business Logic Layer
+│   (RentalService)                   │
+├─────────────────────────────────────┤
+│      Repository Layer                │  ← Data Access Layer
+│   (JsonRepository)                  │
+├─────────────────────────────────────┤
+│      Models Layer                    │  ← Domain Models
+│   (Car, Client, Rental)             │
+└─────────────────────────────────────┘
+```
+
+### Complete CRUD Operations
+
+#### Car Management
+- ✅ **Create**: `add_car(car: Car) -> bool`
+- ✅ **Read**: `get_car(vehicle_id)`, `get_all_cars()`, `get_available_cars()`
+- ✅ **Update**: `update_car(vehicle_id, **kwargs) -> bool`
+- ✅ **Delete**: `delete_car(vehicle_id) -> bool` (with business rule validation)
+
+#### Client Management
+- ✅ **Create**: `add_client(client: Client) -> bool`
+- ✅ **Read**: `get_client(client_id)`, `get_all_clients()`
+- ✅ **Update**: `update_client(client_id, **kwargs) -> bool`
+- ✅ **Delete**: `delete_client(client_id) -> bool` (prevents deletion if active rentals exist)
+
+#### Rental Management
+- ✅ **Create**: `create_rental(rental_id, car_id, client_id) -> Optional[Rental]`
+- ✅ **Read**: `get_rental(rental_id)`, `get_all_rentals()`, `get_active_rentals()`
+- ✅ **Update**: `complete_rental(rental_id) -> bool` (completes rental and calculates cost)
+- ✅ **Delete**: `delete_rental(rental_id) -> bool` (only for completed rentals)
+
+### Design Patterns
+
+#### 1. Repository Pattern
+- **Abstract Repository** (`base_repository.py`): Defines CRUD interface
+- **Concrete Repository** (`concrete_repository.py`): JSON-based implementation
+- **Benefits**: Separates data access from business logic, enables easy testing and future database migration
+
+#### 2. Strategy Pattern
+- **RentalCostStrategy**: Interface for cost calculation algorithms
+- **Implementations**:
+  - `StandardCarCost`: Base calculation
+  - `SUVRentalCost`: Applies 1.2x multiplier for SUVs
+- **Benefits**: Allows flexible pricing strategies without modifying existing code (Open/Closed Principle)
+
+#### 3. Decorator Pattern
+- **CostDecorator**: Wraps cost strategies to add additional pricing rules
+- **Implementations**:
+  - `LongTermRentalCost`: 15% discount for rentals ≥ 7 days
+  - `HolidayDiscount`: 10% discount on holidays
+- **Benefits**: Composable pricing rules, follows Single Responsibility Principle
+
+#### 4. Service Layer Pattern
+- **RentalService**: Encapsulates business logic
+- Coordinates between repositories and enforces business rules
+- **Benefits**: Separation of concerns, centralized business logic
+
+### Design Principles Applied
+
+#### SOLID Principles
+
+1. **Single Responsibility Principle (SRP)**
+   - Each class has one reason to change
+   - Models: data representation
+   - Repositories: data persistence
+   - Services: business logic
+   - CLI: user interaction
+
+2. **Open/Closed Principle (OCP)**
+   - Strategy pattern allows adding new cost calculation strategies without modifying existing code
+   - Decorator pattern enables adding new pricing rules without changing core classes
+
+3. **Liskov Substitution Principle (LSP)**
+   - `JsonRepository` can replace `Repository` abstract class
+   - `Car` properly extends `Vehicle` behavior
+
+4. **Interface Segregation Principle (ISP)**
+   - `RentalCostStrategy` defines minimal interface needed
+   - Clients only depend on methods they use
+
+5. **Dependency Inversion Principle (DIP)**
+   - Service layer depends on `Repository` abstraction, not concrete implementation
+   - Enables easy swapping of storage backends
+
+#### GRASP Principles
+
+1. **Information Expert**: Models contain their own validation logic
+2. **Creator**: Services create domain objects
+3. **Controller**: CLI acts as system boundary controller
+4. **Low Coupling**: Layers interact through well-defined interfaces
+5. **High Cohesion**: Related functionality grouped together
+
+#### CUPID Principles
+
+1. **Composable**: Small, focused classes that work together
+2. **Unix Philosophy**: Do one thing well
+3. **Predictable**: Consistent naming and behavior
+4. **Idiomatic**: Follows Python conventions
+5. **Domain-Based**: Models reflect real-world entities
+
+### Exception Handling
+
+Custom exception hierarchy:
+
+```python
+CarRentalException (base)
+├── EntityNotFoundError
+├── EntityNotAvailableError
+├── ValidationError
+├── BusinessLogicError
+└── DeletionError
+```
+
+- Provides specific, meaningful error messages
+- Enables precise error handling
+- Improves debugging and user experience
+
+### Enhanced Logging
+
+**Features:**
+- File logging with rotation (max 10MB, 5 backups)
+- Console logging with formatted output
+- Configurable log levels (DEBUG, INFO, WARNING, ERROR)
+- Detailed logging includes file names and line numbers
+- Separate console and file formatters
+
+**Configuration:**
+- Located in `src/logging_config.py`
+- Centralized setup
+- Logs stored in `logs/car_rental.log`
+
+### CLI Interface
+
+**Features:**
+- Interactive menu-driven interface
+- Full CRUD operations for all entities
+- Input validation and error handling
+- User-friendly prompts and confirmations
+- Report generation
+
+**Menu Structure:**
+1. **Car Management**: Add, View, Update, Delete cars
+2. **Client Management**: Add, View, Update, Delete clients
+3. **Rental Management**: Create, View, Complete, Delete rentals
+4. **Reports**: View various reports and statistics
+
+**Usage:**
+```bash
+python run.py              # Start CLI mode
+python src/main.py --mode cli    # CLI mode
+python src/main.py --mode demo   # Demo mode
+```
+
+### Testing
+
+**Coverage:**
+- ✅ Unit tests for all models (Car, Client, Rental)
+- ✅ Repository tests (CRUD operations, edge cases)
+- ✅ Service layer tests (business logic, error scenarios)
+- ✅ Edge case tests (validation, boundary conditions)
+- ✅ Integration tests (end-to-end workflows)
+
+**Test Files:**
+- `test_car.py`: Model tests (inheritance, polymorphism, serialization)
+- `test_client.py`: Client model tests
+- `test_rental.py`: Rental model and composition tests
+- `test_repository.py`: Repository CRUD operations
+- `test_service.py`: Service layer business logic
+- `test_service_edge_cases.py`: Error scenarios and edge cases
+
+**Running Tests:**
+```bash
+pytest                    # Run all tests
+pytest -v                 # Verbose output
+pytest --cov=src          # With coverage report (if pytest-cov installed)
+```
+
+### Data Persistence
+
+**JSON File Structure:**
+- `data/cars.json`: Array of car objects
+- `data/clients.json`: Array of client objects
+- `data/rentals.json`: Array of rental objects
+
+**Features:**
+- Automatic file creation if missing
+- Deletion history tracking (configurable size)
+- Atomic write operations
+- JSON validation and error handling
+
+### Class Diagrams
+
+See `docs/UML.drawio.svg` for detailed class diagrams showing:
+- Inheritance relationships
+- Composition relationships
+- Method signatures
+- Design pattern implementations
+
+### Future Enhancements
+
+Potential improvements for future sprints:
+- Database integration (PostgreSQL/MySQL)
+- Web API (RESTful endpoints)
+- GUI application (Tkinter/PyQt)
+- Advanced reporting and analytics
+- Multi-user support with authentication
+- Rental history and statistics dashboard
