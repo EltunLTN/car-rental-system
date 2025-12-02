@@ -14,34 +14,34 @@ def client_service(clients_repo):
 
 
 def test_add_and_get_client(client_service):
-    client = client_service.add_client(Client("TEMP", "John Doe", "john@example.com", "123"))
+    client = client_service.add_client(Client("TEMP", "John Doe", "john@example.com", "1234567890"))
     assert client.client_id != "TEMP"
     assert client_service.get_client(client.client_id).name == "John Doe"
     assert client_service.get_client("INVALID") is None
 
 def test_get_all_clients(client_service):
     assert client_service.get_all_clients() == []
-    client_service.add_client(Client("T", "A", "a@example.com", "111"))
-    client_service.add_client(Client("T", "B", "b@example.com", "222"))
+    client_service.add_client(Client("T", "A", "a@example.com", "1112223333"))
+    client_service.add_client(Client("T", "B", "b@example.com", "2223334444"))
     assert len(client_service.get_all_clients()) == 2
 
 def test_update_client(client_service):
-    client = client_service.add_client(Client("T", "John", "john@example.com", "123"))
+    client = client_service.add_client(Client("T", "John", "john@example.com", "1234567890"))
     updated = client_service.update_client(client.client_id, {"name": "Jane", "email": "jane@example.com"})
     assert updated.name == "Jane" and updated.email == "jane@example.com"
     assert client_service.update_client("INVALID", {}) is None
 
 def test_delete_client(client_service):
-    client = client_service.add_client(Client("T", "Delete Me", "d@example.com", "999"))
+    client = client_service.add_client(Client("T", "Delete Me", "d@example.com", "9998887777"))
     deleted = client_service.delete_client(client.client_id)
     assert isinstance(deleted, Client)
     assert client_service.get_client(client.client_id) is None
     assert client_service.delete_client("INVALID") is None
 
 def test_search_clients(client_service):
-    client_service.add_client(Client("T", "John Doe", "john@example.com", "123"))
-    client_service.add_client(Client("T", "Jane Doe", "jane@example.com", "456"))
-    client_service.add_client(Client("T", "Bob Smith", "bob@example.com", "789"))
+    client_service.add_client(Client("T", "John Doe", "john@example.com", "1234567890"))
+    client_service.add_client(Client("T", "Jane Doe", "jane@example.com", "4567890123"))
+    client_service.add_client(Client("T", "Bob Smith", "bob@example.com", "7890123456"))
     
     assert len(client_service.search_clients(name="Doe")) == 2
     assert len(client_service.search_clients(email="john@example.com")) == 1
