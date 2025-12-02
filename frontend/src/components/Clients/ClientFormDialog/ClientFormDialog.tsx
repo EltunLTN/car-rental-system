@@ -1,10 +1,3 @@
-import {
-  Field,
-  FieldError,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
-
 import { Button } from "@/components/ui/button";
 import {
   DialogClose,
@@ -20,15 +13,18 @@ import type {
   ClientFormData,
   ClientTemplate,
 } from "@/constants/clientTemplates";
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 
-type modeType = "edit" | "create";
+// export for testing
+export type modeType = "edit" | "create";
 
 interface ClientFormDialogProps {
-  form: UseFormReturn<
-    { name: string; email: string; phone: string },
-    any,
-    { name: string; email: string; phone: string }
-  >;
+  form: UseFormReturn<{ name: string; email: string; phone: string }>;
   onSumbit: (data: ClientFormData) => void;
   mode: modeType;
   defaultData?: ClientTemplate;
@@ -41,7 +37,10 @@ function ClientFormDialog({
   defaultData,
 }: ClientFormDialogProps) {
   return (
-    <DialogContent className="sm:max-w-[425px]">
+    <DialogContent
+      data-testid="client-form-dialog"
+      className="sm:max-w-[425px]"
+    >
       <form onSubmit={form.handleSubmit(onSumbit)}>
         <DialogHeader>
           <DialogTitle>
@@ -49,7 +48,7 @@ function ClientFormDialog({
           </DialogTitle>
           <DialogDescription className="sr-only">
             {mode === "edit"
-              ? "Edit client data."
+              ? "Edit the client's data."
               : "Enter the client's details below to add them to your database."}
           </DialogDescription>
         </DialogHeader>

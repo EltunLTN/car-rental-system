@@ -5,8 +5,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import ClientSideCountUp from "@/components/ui/ClientSideCountUp";
-import CustomIcon from "@/components/ui/CustomIcon";
+import ClientSideCountUp from "@/components/ui/custom/ClientSideCountUp";
+import CustomIcon from "@/components/ui/custom/CustomIcon";
 import type { ColorTheme } from "@/constants/colorConstants";
 import type { LucideIcon } from "lucide-react";
 

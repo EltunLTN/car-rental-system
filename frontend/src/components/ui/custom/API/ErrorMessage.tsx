@@ -11,6 +11,7 @@ function ErrorMessage({ error, children }: ErrorProps) {
       role="status"
       aria-live="polite"
       className="font-mono grid place-items-center"
+      data-testid="api-error"
     >
       {children}
     </div>

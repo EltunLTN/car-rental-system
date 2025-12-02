@@ -1,8 +1,8 @@
 import { TableCell, TableRow } from "@/components/ui/table";
-import ShortID from "@/components/DashBoard/RecentRentals/ShortID";
+import ShortID from "@/components/ui/custom/ShortID/ShortID";
 import type { ClientTemplate } from "@/constants/clientTemplates";
 
-import { Actions } from "@/components/Action/Action";
+import { Actions } from "@/components/ui/custom/Action/Action";
 import { useDeleteClient } from "@/hooks/queryHooks/clients/useDeleteClient";
 
 function ClientsRow({ client }: { client: ClientTemplate }) {

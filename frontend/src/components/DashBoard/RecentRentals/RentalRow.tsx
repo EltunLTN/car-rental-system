@@ -1,5 +1,5 @@
 import { TableCell, TableRow } from "@/components/ui/table";
-import ShortID from "./ShortID";
+import ShortID from "../../ui/custom/ShortID/ShortID";
 import type { RecentRentalTemplate } from "@/constants/dashBoardTemplates";
 import { COLOR_MAP } from "@/constants/colorConstants";
 

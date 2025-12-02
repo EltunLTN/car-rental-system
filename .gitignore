@@ -62,6 +62,13 @@ htmlcov/
 .coverage
 htmlcov/
 
+.vitest_cache
+
 # Logs and temporary files
 *.log
 tmp/
+
+#
+node_modules
+/node_modules
+/frontend/node_modules
