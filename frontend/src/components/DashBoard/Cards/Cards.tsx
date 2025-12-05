@@ -2,16 +2,21 @@ import CustomCard from "./CustomCard";
 import { cardTemplates } from "@/constants/dashBoardTemplates";
 import CardsSkeleton from "./CardsSkeleton";
 import { useDashboardOverview } from "@/hooks/queryHooks/dashboard/useDashboardOverview";
-import ErrorMessage from "@/components/API/ErrorMessage";
+import ErrorMessage from "@/components/ui/custom/API/ErrorMessage";
 
 function Cards() {
   const { data, isError, isLoading, error } = useDashboardOverview();
-  if (isLoading) {
-    return <CardsSkeleton />;
+
+  if (isError) {
+    return (
+      <ErrorMessage error={error}>
+        <span className="pt-10">Error loading dashboard</span>
+      </ErrorMessage>
+    );
   }
 
-  if (isError || !data) {
-    return <ErrorMessage error={error}>Error loading dashboard</ErrorMessage>;
+  if (isLoading) {
+    return <CardsSkeleton />;
   }
 
   return (

@@ -6,8 +6,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAddNewClient } from "@/hooks/queryHooks/clients/useAddNewClient";
 import { useState } from "react";
-import ClientFormDialog from "../ClientFormDialog/ClientFormDialog";
 import { clientSchema, type ClientFormData } from "@/constants/clientTemplates";
+import ClientFormDialog from "../ClientFormDialog/ClientFormDialog";
 
 function AddClientDropdown() {
   const addClientMutation = useAddNewClient();

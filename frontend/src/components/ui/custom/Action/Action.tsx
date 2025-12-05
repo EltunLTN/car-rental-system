@@ -8,9 +8,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import DeleteDialog from "./DeleteDialog";
-import ClientFormDialog from "../Clients/ClientFormDialog/ClientFormDialog";
-import { Dialog } from "../ui/dialog";
+import ClientFormDialog from "../../../Clients/ClientFormDialog/ClientFormDialog";
+import { Dialog } from "../../dialog";
 import {
   clientSchema,
   type ClientFormData,
@@ -19,6 +18,7 @@ import {
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useUpdateClient } from "@/hooks/queryHooks/clients/useUpdateClient";
+import ConfirmationDialog from "../ConfirmDialog";
 
 type forField = "client" | "car";
 
@@ -63,8 +63,9 @@ export function Actions({ onDelete, type, defaultData }: ActionsProps) {
           <Button
             variant="outline"
             className="cursor-pointer"
-            aria-label="Open menu"
+            aria-label="Open actions menu"
             size="icon-sm"
+            data-testid="actions-button"
           >
             <MoreHorizontalIcon />
           </Button>
@@ -81,10 +82,14 @@ export function Actions({ onDelete, type, defaultData }: ActionsProps) {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <DeleteDialog
+      <ConfirmationDialog
         onDelete={onDelete}
         open={showDelete}
         onOpenChange={setShowDelete}
+        title="Confirm deletion"
+        description="Are you sure? The actions are irreversable."
+        actionText="Delete"
+        closeText="Cancel"
       />
 
       {type === "client" ? (
@@ -92,10 +97,6 @@ export function Actions({ onDelete, type, defaultData }: ActionsProps) {
           <ClientFormDialog mode="edit" form={form} onSumbit={onSubmit} />
         </Dialog>
       ) : (
-        // <ClientEditDialog
-        //   open={showShareDialog}
-        //   onOpenChange={setShowShareDialog}
-        // />
         <></>
       )}
     </>

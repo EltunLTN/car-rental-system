@@ -3,10 +3,10 @@ import DashBoard from "./pages/Dashboard";
 import Cars from "./pages/Cars";
 import Clients from "./pages/Clients";
 import Rentals from "./pages/Rentals";
-import Footer from "./components/Footer/Footer";
-import NavbarMobile from "./components/Navbar/NavbarMobile";
-import NavbarDesktop from "./components/Navbar/NavbarDesktop";
-import TopBanner from "./components/ui/TopBanner";
+import Footer from "./components/layout/Footer/Footer";
+import NavbarMobile from "./components/layout/Navbar/NavbarMobile";
+import NavbarDesktop from "./components/layout/Navbar/NavbarDesktop";
+import TopBanner from "./components/ui/custom/TopBanner";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();

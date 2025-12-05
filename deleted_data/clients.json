@@ -1,12 +1,5 @@
 [
   {
-    "client_id": "83a61929-37b4-4406-8ae5-041d3748b83c",
-    "name": "bebra",
-    "email": "msayev@gmail.com",
-    "phone": "0000000",
-    "deletion_date": "2025-11-30"
-  },
-  {
     "client_id": "CL005",
     "name": "Skafenao ls",
     "email": "dsgd@example.com",
@@ -32,6 +25,13 @@
     "name": "ijhyvhjbubo",
     "email": "jhvhvj@hji.com",
     "phone": "8658757",
+    "deletion_date": "2025-12-01"
+  },
+  {
+    "client_id": "478554bd-ac27-4bc1-b7a8-cf80788af5e0",
+    "name": "Islam Cabarli - gay",
+    "email": "iso@gmail.com",
+    "phone": "+31535253",
     "deletion_date": "2025-12-01"
   }
 ]
