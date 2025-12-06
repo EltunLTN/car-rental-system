@@ -1,9 +1,9 @@
 [
   {
     "client_id": "CL001",
-    "name": "The Rock",
-    "email": "rocky@example.com",
-    "phone": "+1234567890"
+    "name": "islam",
+    "email": "eamgea@mail.com",
+    "phone": "12435131"
   },
   {
     "client_id": "CL002",
@@ -22,11 +22,5 @@
     "name": "John Doe",
     "email": "john@example.com",
     "phone": "+1234567890"
-  },
-  {
-    "client_id": "CL005",
-    "name": "Skafenao ls",
-    "email": "dsgd@example.com",
-    "phone": "+0987654321"
   }
 ]

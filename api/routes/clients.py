@@ -1,11 +1,11 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Body
 from api.dependencies import client_service
 from typing import List
 
 from src.models.client import Client
 
 #import schemas
-from api.schemas.client import ClientResponse, ClientSchema, DeletedClientSchema
+from api.schemas.client import ClientResponse, ClientSchema, DeletedClientResponse
 from api.schemas.response import ResponseModel
 
 router = APIRouter()
@@ -20,7 +20,7 @@ def get_clients() -> List[dict]:
         "data": data
     }
 
-@router.get("/clients/deleted", response_model=ResponseModel[List[DeletedClientSchema]])
+@router.get("/clients/deleted", response_model=ResponseModel[List[DeletedClientResponse]])
 def get_deleted_clients() -> List[dict]:
     # no need to deserialize cuz get_deleted_clients returns dict 
     data = client_service.get_deleted_clients()
@@ -49,6 +49,17 @@ def create_client(data: ClientSchema) -> dict:
         raise HTTPException(status_code=400, detail="Something went wrong")
     data = result.to_dict()
     return {"message": "Client has been successfully added", "data": data}
+
+@router.patch("/clients/{client_id}", response_model=dict)
+def update_client(client_id: str, updated_fields: dict = Body(...)) -> dict:
+    result = client_service.update_client(client_id, updated_fields)
+    if not result:
+        raise HTTPException(status_code=404, detail=f"Client with id {client_id} not found")
+    data = result.to_dict()
+    return {
+        "message": "success",
+        "data": data
+    }
 
 @router.delete("/clients/{client_id}", response_model=dict)
 def delete_client(client_id: str):
