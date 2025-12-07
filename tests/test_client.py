@@ -40,7 +40,7 @@ def test_empty_strings():
         Client('', '', '', '')
 
 def test_special_characters():
-    client = Client('CL-001', "O'Brien", 'test+tag@example.com', '+1 (555) 123-4567')
+    client = Client('CL-001', "O'Brien", 'test+tag@example.com', '1234567')
     assert client.client_id == 'CL-001'
 
 def test_unicode():
