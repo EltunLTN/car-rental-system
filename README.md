@@ -67,43 +67,43 @@ pip install -r requirements.txt
 ## 📁 Project Structure
 
 ```
-car_rental_project/
-│
+car-rental-system/
 ├── data/
 │   ├── cars.json
 │   ├── clients.json
 │   └── rentals.json
-│
+├── deleted_data/
 ├── docs/
 │   ├── ER (for db).png
 │   ├── UML.png
 │   ├── technical_documentation.md
 │   └── user_guide.md
-│
+├── frontend/
+├── media/
+│   └── cars/
 ├── src/
 │   ├── models/
 │   │   ├── base.py
 │   │   ├── car.py
 │   │   ├── client.py
 │   │   └── rental.py
-│   │
 │   ├── repositories/
 │   │   └── repository.py
-│   │
 │   ├── services/
 │   │   └── rental_service.py
-│   │
 │   └── main.py              # Entry point
-│
 ├── tests/
 │   ├── test_car.py
 │   ├── test_client.py
 │   ├── test_rental.py
 │   └── test_repository.py
-│
-├── run.py
+├── .gitignore
+├── README.md
+├── cli.py
 ├── requirements.txt
-└── README.md
+├── run.py
+└── run_api.py
+
 ```
 
 ---
