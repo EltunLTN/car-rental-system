@@ -38,5 +38,15 @@
     "seats": 4,
     "is_available": true,
     "image_url": "/media/cars/08f9fdc6-d07f-4fba-ad62-c1f4625b5f4b_lada_07.jpg"
+  },
+  {
+    "vehicle_id": "fd643998-46b5-4cdb-babb-d3c83777931c",
+    "brand": "Maya",
+    "model": "Kalin",
+    "daily_rate": 124.0,
+    "car_type": "Crazy good",
+    "seats": 10,
+    "is_available": true,
+    "image_url": "/media/cars/ad6012fe-a882-4f3b-85d5-f511fd7a2a70_lada_kalina.jpg"
   }
 ]

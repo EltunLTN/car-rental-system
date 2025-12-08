@@ -94,7 +94,7 @@ export function Actions({ onDelete, type, defaultData }: ActionsProps) {
 
       {type === "client" ? (
         <Dialog open={showEdit} onOpenChange={setShowEdit}>
-          <ClientFormDialog mode="edit" form={form} onSumbit={onSubmit} />
+          <ClientFormDialog mode="edit" form={form} onSubmit={onSubmit} />
         </Dialog>
       ) : (
         <></>

@@ -1,42 +1,39 @@
 import { render, screen } from "@testing-library/react";
-import ClientsHeader from "../ClientsHeader";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import CarsHeader from "./CarsHeader";
 
 const setShowDeleted = vi.fn();
 
 const queryClient = new QueryClient();
 
-describe("ClientsHeader", () => {
-  const renderClientsHeader = (showDeleted: boolean) => {
+describe("CarsHeader", () => {
+  const renderCarsHeader = (showDeleted: boolean) => {
     render(
       <QueryClientProvider client={queryClient}>
-        <ClientsHeader
-          showDeleted={showDeleted}
-          setShowDeleted={setShowDeleted}
-        />
+        <CarsHeader showDeleted={showDeleted} setShowDeleted={setShowDeleted} />
       </QueryClientProvider>
     );
   };
   it("renders h1 and button text, aria-label properly on showDelete true", () => {
-    renderClientsHeader(true);
+    renderCarsHeader(true);
 
     expect(
-      screen.getByRole("heading", { name: "Deleted Clients" })
+      screen.getByRole("heading", { name: "Deleted Cars" })
     ).toBeInTheDocument();
 
     const button = screen.getByText("Go Back");
     expect(button).toBeInTheDocument();
-    expect(button).toHaveAttribute("aria-label", "Go back to clients table");
+    expect(button).toHaveAttribute("aria-label", "Go back to cars overview");
   });
   it("renders h1 and button text, aria-label properly on showDelete false", () => {
-    renderClientsHeader(false);
+    renderCarsHeader(false);
 
     expect(
-      screen.getByRole("heading", { name: "Clients" })
+      screen.getByRole("heading", { name: "Cars Overview" })
     ).toBeInTheDocument();
 
     const button = screen.getByText("Show Deleted");
     expect(button).toBeInTheDocument();
-    expect(button).toHaveAttribute("aria-label", "View deleted clients table");
+    expect(button).toHaveAttribute("aria-label", "View deleted cars");
   });
 });
