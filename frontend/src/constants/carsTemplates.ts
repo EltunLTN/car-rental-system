@@ -19,19 +19,17 @@ export const carSchema = z.object({
   car_type: z.string().min(1, "Type is required"),
   seats: z.number().positive("Seats must be positive").max(50),
   image_url: z.file().optional(),
-  is_available: z.boolean(),
 });
 
 // for form hooks
-export const clientDefaultValues = {
+export const carDefaultValues = {
   brand: "",
   model: "",
-  daily_rate: 0,
+  daily_rate: 0.1,
   car_type: "",
-  seats: "",
+  seats: 1,
   image_url: undefined,
 };
-
 // for the toggle buttons
 export type CarFormData = z.infer<typeof carSchema>;
 

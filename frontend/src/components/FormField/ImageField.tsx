@@ -50,8 +50,6 @@ function ImageField<TForm extends FieldValues>({
     return () => URL.revokeObjectURL(objectUrl);
   }, [selectedFile]);
 
-  console.log(previewUrl);
-
   return (
     <Controller
       name={name}
